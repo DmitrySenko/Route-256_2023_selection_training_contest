@@ -1,0 +1,5 @@
+a = int(input())
+for i in range(a):
+    stdin = input().split()
+    print(int(stdin[0]) + int(stdin[1]))
+    
