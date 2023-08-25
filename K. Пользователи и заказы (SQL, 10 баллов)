@@ -1,0 +1,6 @@
+select users.id, users.name
+from users, (select user_id id , count(product) cnt
+from orders
+group by user_id) x
+where users.id = x.id
+order by users.name, users.id;
