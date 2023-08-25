@@ -1,0 +1,33 @@
+def find_friends(name):
+    global dct
+    lst = []
+    for friend in dct.get(name): lst.extend(dct.get(friend))
+    st = set(lst) - set(dct.get(name))
+    st.discard(name)
+    st = list(st)
+    if len(st) == 0: print(0)
+    else:
+        arr = []
+        for i in st: arr.append(lst.count(i))
+        resp = []
+        for i in range(len(arr)):
+            if arr[i] == max(arr): resp.append(st[i])
+        resp.sort()
+        print(*resp)
+
+
+m = input().split()
+n, m = int(m[0]), int(m[1])
+users = [int(x) for x in range(1, n + 1)]
+dct = {}
+for i in users:
+    dct[i] = []
+for i in range(m):
+    pair = input().split()
+    x, y = int(pair[0]), int(pair[1])
+    val1, val2 = dct.get(x), dct.get(y)
+    val1.append(y), val2.append(x)
+    dct[x] = val1
+    dct[y] = val2
+for i in users:
+    find_friends(i)
