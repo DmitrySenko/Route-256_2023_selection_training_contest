@@ -1,0 +1,33 @@
+def ryhme_rate(word, lst):
+    global cnt, dct
+    resp = []
+    for i in lst:
+        try:
+            if word[-cnt] == i[-cnt]:
+                resp.append(i)
+        except IndexError: pass
+    if word in resp: resp.remove(word)
+    if len(resp) > 0:
+        cnt += 1
+        return(ryhme_rate(word, resp))
+    else:
+        for j in lst:
+            if j != word:
+                dct[word] = j
+                print(j)
+                break
+    
+    
+dct = {}
+n = int(input())
+word_list = []
+for i in range(n):
+    word = input()
+    word_list.append(word)
+q = int(input())
+for i in range(q):
+    new_word = input()
+    if new_word not in dct:
+        cnt = 1
+        ryhme_rate(new_word, word_list)
+    else: print(dct.get(new_word))
